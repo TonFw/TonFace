@@ -1,42 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Untitled Page</title>
+	<title>FaceApp</title>
 	<link rel="stylesheet" href="public/style.css" type="text/css" />
+        <meta charset="ISO-8859-1" />
 	<?php include "public/base/includes-js.php" ?>
         
 	<script type="text/javascript">
-		
+            
 	</script>
 	
 </head>
 <body>
-    <!-- Div preferencias body serve como se fosse o body, já que pode ser que o face não permita que coloquemos nossa página inteira dentro do canvas -->
-    <div id="preferencias_body">
-        <div id="header" class="navbar">
-            <div class="navbar-inner">
-              <div class="container">
 
-                <!-- .btn-navbar é o botão usado para mostrar e esconder o menu -->
-                <a class="btn btn-navbar" data-toggle="collapse" data-target="#barra_navegacao">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </a>
-                
-                <!-- Colocamos aqui a marca e esta ficará exposta junto com o botão -->
-                <a class="brand" href="#">Project name</a>
-                
-                <!-- Feito aqui o callpse, o collpase é aquele efeito sanfona que serve para sumir com algo -->
-                <div id="barra_navegacao" class="nav-collapse nav-collapse navbar-responsive-collapse in collapse">
-                    <!-- Naveção -->
-                    <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Página 1</a></li>
-                        <li><a href="#">Página 2</a></li>
-                    </ul>
-                </div>
+    <?php 
+        require_once 'config/lib/facebook/facebook.php';
+        /*  
+        $appapikey = '401814973235009';  
+        $appsecret = 'a4288d0a1dee26631bae906dab16dfc1';  
+        $facebook = new Facebook($appapikey, $appsecret);  
+        echo $user_id = $facebook->require_login();
+        */
+        
+        
+        /*
+        $config = array();
+        $config['appId'] = '401814973235009';
+        $config['secret'] = 'a4288d0a1dee26631bae906dab16dfc1';
+        $config['fileUpload'] = false; // optional
 
-              </div>
-            </div>
-      </div>
+        $facebook = new Facebook($config);
+        echo $facebook->getUser();
+         */
+    ?>  
+    
