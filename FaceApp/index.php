@@ -19,8 +19,8 @@
 <?php 
     include 'config/lib/facebook/facebook.php';
     $facebook = new Facebook(array(
-      'appId'  => '401814973235009',
-      'secret' => 'a4288d0a1dee26631bae906dab16dfc1',
+      'appId'  => '476796465713332',
+      'secret' => 'c9fa9efc628c335959af7614f45ca627',
     ));
 
     $user = $facebook->api("/ilton.garcia");
