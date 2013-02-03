@@ -1,4 +1,5 @@
 <?php 
+
     /**
      * Primeiro é necessário distinguir entre três tipos de usuários
      * 1- Usuário logado no face e que tem o app autorizado;
@@ -12,26 +13,36 @@
 
      // Se tiver um id para o $user, isso significa que o usuário está loggado no facebook, mas nós não sabemos se o token dele é válido.
     // Um token de acesso é válido se o usuário deslogou no Face.
-
-?>
-
-<?php 
-    include 'config/lib/facebook/facebook.php';
-    $facebook = new Facebook(array(
-      'appId'  => '476796465713332',
-      'secret' => 'c9fa9efc628c335959af7614f45ca627',
-    ));
-
-    $user = $facebook->api("/ilton.garcia");
     
-    echo $user['name'] . "<br><br>";
-    echo print_r($user);
- ?>
-
+?>
 
 
 <?php
-/*
-include 'public/base/header.php';
-    include 'public/content_home.php';
-include 'public/base/footer.php'; */?>
+
+    /**
+     * As funções de: permissões, autenticação e logout são usadas em conjunto com o SDK de Javascript do Face.
+     * O SDK PHP pode compartilhar a sessão do usuário cruzando cliente e servidor. 
+     * Se um usuário está logado no Face e tem este app na lsita de autorizados então:
+     * O Javascript pode inicializar a sessão de usuário e persistir tal em um cookie que o PHP SDK lê sem qualquer intervenção na imeplentação servidora.
+     * --> Para abilitar tal funcionalidade tem que colocar o JS SDK e inicializá-lo. 
+     * --> Necessário setar ambos os parametros (status e cookie) do objeto passado para FB.init() para true. 
+     **/
+    
+?>
+
+
+<?php 
+
+    /**
+     * 
+     * 
+     **/
+
+?>
+
+
+
+
+
+
+
