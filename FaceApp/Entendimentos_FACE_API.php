@@ -32,10 +32,64 @@
 
 
 <?php 
+    //Facebook Object
 
     /**
      * 
-     * 
+
+    
+     * api (FQL = SPARQL) --> https://developers.facebook.com/docs/reference/php/facebook-api/
+    Call a Graph API method, FQL Query, or (DEPRECATED) REST API using the PHP SDK.
+    
+     * getAccessToken --> https://developers.facebook.com/docs/reference/php/facebook-getAccessToken/
+    Get the current access token being used by the SDK.
+    
+     * getApiSecret --> https://developers.facebook.com/docs/reference/php/facebook-getAppSecret/
+    Get the App secret that the SDK is currently using.
+    
+     * getAppId --> https://developers.facebook.com/docs/reference/php/facebook-getAppId/
+    Get the App ID that the SDK is currently using.
+    
+     * getLoginStatusUrl --> https://developers.facebook.com/docs/reference/php/facebook-getLoginStatusUrl/
+    Returns a URL based on the user?s login status on Facebook.
+    
+     * getLoginUrl --> https://developers.facebook.com/docs/reference/php/facebook-getLoginUrl/
+    Get a URL that the user can click to login, authorize the app, and get redirected back to the app.
+    
+     * getLogoutUrl --> https://developers.facebook.com/docs/reference/php/facebook-getLogoutUrl/
+    This method returns a URL that, when clicked by the user, will log them out of their Facebook session and then redirect them back to your application.
+    
+     * getSignedRequest --> https://developers.facebook.com/docs/reference/php/facebook-getSignedRequest/
+    Get the current signed request being used by the SDK.
+    
+     * getUser --> https://developers.facebook.com/docs/reference/php/facebook-getUser/
+    This method returns the Facebook User ID of the current user, or 0 if there is no logged-in user.
+    
+     * setAccessToken --> https://developers.facebook.com/docs/reference/php/facebook-setAccessToken/
+    Set the current access token being used by the SDK.
+    
+     * setApiSecret --> https://developers.facebook.com/docs/reference/php/facebook-setAppSecret/
+    Set the App secret that the SDK is currently using.
+    
+     * setAppId --> https://developers.facebook.com/docs/reference/php/facebook-setAppId/
+    Set the App ID that the SDK is currently using.
+    
+     * setFileUploadSupport --> https://developers.facebook.com/docs/reference/php/facebook-setFileUploadSupport/
+    Set file upload support in the SDK.
+    
+     * useFileUploadSupport --> https://developers.facebook.com/docs/reference/php/facebook-getFileUploadSupport/
+    Get whether file upload support has been enabled in the SDK.
+    
+     //FacebookApiException
+
+    
+     * getResult --> https://developers.facebook.com/docs/reference/php/exception-getResult/
+    Get the object that is the result of the error or exception returned by the server.
+    
+     * getType --> https://developers.facebook.com/docs/reference/php/exception-getType/
+    Get the type for the error or exception, e.g. OAuthException.
+     
+     
      **/
 
 ?>
