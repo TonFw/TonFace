@@ -88,8 +88,20 @@
     
      * getType --> https://developers.facebook.com/docs/reference/php/exception-getType/
     Get the type for the error or exception, e.g. OAuthException.
+
+     * Permissões --> https://developers.facebook.com/docs/reference/login/#permissions
      
+     FACE LOGIN --> https://developers.facebook.com/docs/concepts/login/
+
+     Design social (projetando pensando na forma social) --> https://developers.facebook.com/socialdesign/
      
+     Plugind sociais (ações da rede social: curtir, mandar msg, follow e etc..)
+     
+     Dialogs --> São os alertas, telas de login, tela para envio de mensagem e etc...
+
+     Open Graph --> É aquela parte que a pessoa pode expressar a experiencia com um app, e também a publicação, via app no mural.
+     
+     PROMOÇÃO DA APLICAÇÃO --> https://developers.facebook.com/promote/
      **/
 
 ?>
