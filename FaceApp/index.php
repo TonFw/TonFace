@@ -17,15 +17,15 @@
 
 <?php 
     include 'config/lib/facebook/facebook.php';
-    $facebook = new Facebook(array(
-      'appId'  => '476796465713332',
-      'secret' => 'c9fa9efc628c335959af7614f45ca627',
+    $my_app_obj = new Facebook(array(
+      'appId'  => '390027847770909',
+      'secret' => 'c405c2cae7f8ddaed0778fdc9ccef583',
     ));
 
-    $user = $facebook->api("/ilton.garcia");
+    $facebook_obj = $my_app_obj->api("/ilton.garcia");
     
-    echo $user['name'] . "<br><br>";
-    echo print_r($user);
+    echo $facebook_obj['name'] . "<br><br>";
+    echo print_r($facebook_obj);
  ?>
 
 
