@@ -30,6 +30,22 @@
     
 ?>
 
+<?php 
+    
+    /**
+     * O USER ID do facebook permite a pesquisa pelo usuário mediante seu ID.
+     * O USER facebook é o usuário logado no facebook, este só muda se outro for logado.
+     * O CALL BACK é quando o facebook anuncia que alguém assinou ou desassinou a aplicação.
+     * 
+     * 
+     */
+    
+?>
+
+
+
+
+
 
 <?php 
     //Facebook Object
