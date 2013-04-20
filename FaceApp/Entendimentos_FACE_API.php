@@ -16,6 +16,16 @@
     
 ?>
 
+<?php 
+
+/**
+ * EXTREMAMENTE IMPORTANTE: criar uma subdiretório, na raiz, da pasta App com o nome de inc. 
+ * Dentro de inc colocar uma arquivo .inc
+ * Este arquivo serve como um .h global, ou seja, definir itens que podem ser acessados, globalmente, aonde for chamado.
+ * No FaceDev isso serve para guardar os elementos gerais de setagem do app, como secret key, por exemplo.
+ */
+
+?>
 
 <?php
 

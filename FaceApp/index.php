@@ -15,7 +15,32 @@
 
 ?>
 
-<?php 
+<?php echo "<h1>It works!</h1><br>"; ?>
+
+<?php //Testes com a API (Livro)
+    
+    require_once 'lib/inc/globals.inc';
+    
+    $facebook = new Facebook(FB_API_KEY, FB_APP_SECRET);
+    
+    if(isset($facebook->fb_params['authorized'])){
+        //fazer a inicialização de um novo usuário
+    }else if (isset ($facebook->fb_params['unistall'])){
+        //Fazer a limpeza do usuário
+    }else{
+        if( ! $facebook->api_client->added ){
+            //Handle para dar um link para instalação da aplicação para o usuário
+            echo "<p>Hello, non-app user!</p>
+                <a href='". $facebook->get_add_url() . "'>
+                    Click here to add this Application.</a>";
+        }else
+            echo "<p>Hello, app user
+                    <fb:name uid='{$facebook->user}' useyou='false />!</p>";
+    }//fim da cadeis
+    
+?>
+
+<?php /* MEUS TESTES
     include 'config/lib/facebook/facebook.php';
     $my_app_obj = new Facebook(array(
       'appId'  => '390027847770909',
@@ -25,7 +50,7 @@
     $facebook_obj = $my_app_obj->api("/ilton.garcia");
     
     echo $facebook_obj['name'] . "<br><br>";
-    echo print_r($facebook_obj);
+    echo print_r($facebook_obj); */
  ?>
 
 
