@@ -1,17 +1,18 @@
 <?php
     //facebook application configuration -mahmud
-    $fbconfig['appid' ] = "";
-    $fbconfig['secret'] = "";
+    $fbconfig['appid' ] = "151508438353837";
+    $fbconfig['secret'] = "62cdf6050480386936cc4266376e5694";
 
-    $fbconfig['baseUrl']    =   "";// "http://thinkdiff.net/demo/newfbconnect1/iframe/sdk3";
-    $fbconfig['appBaseUrl'] =   "";// "http://apps.facebook.com/thinkdiffdemo";
+    //Base URL é aonde fica o inicio do App (tela de assinatura do App)
+    $fbconfig['baseUrl']    =   "https://shrouded-earth-6459.herokuapp.com/Graph-API-EXEMPLO/";// "http://thinkdiff.net/demo/newfbconnect1/iframe/sdk3";
+    
+    //appBaseURL é a URL real do App
+    $fbconfig['appBaseUrl'] =   "http://apps.facebook.com/api_face_app";// "http://apps.facebook.com/thinkdiffdemo";
 
     
     /* 
-     * If user first time authenticated the application facebook
-     * redirects user to baseUrl, so I checked if any code passed
-     * then redirect him to the application url 
-     * -mahmud
+     * se o usuário não estiver autenticado ele é jogado na baseUrl (URL de assinatura de App)
+     * Se o código for correto ele é redirecionado ao appBase (aonde está o app em si)
      */
     if (isset($_GET['code'])){
         header("Location: " . $fbconfig['appBaseUrl']);
@@ -19,21 +20,16 @@
     }
     //~~
     
-    //
+    //Requests IDs é se o usuário veio por meio de convite
     if (isset($_GET['request_ids'])){
         //user comes from invitation
         //track them if you need
     }
     
-    $user            =   null; //facebook user uid
-    try{
-        include_once "facebook.php";
-    }
-    catch(Exception $o){
-        echo '<pre>';
-        print_r($o);
-        echo '</pre>';
-    }
+    $user =   null; //facebook user uid
+
+    include_once "facebook.php";
+
     // Create our Application instance.
     $facebook = new Facebook(array(
       'appId'  => $fbconfig['appid'],
@@ -42,17 +38,17 @@
     ));
 
     //Facebook Authentication part
-    $user       = $facebook->getUser();
+    $user = $facebook->getUser();
+    
     // We may or may not have this data based 
     // on whether the user is logged in.
     // If we have a $user id here, it means we know 
     // the user is logged into
     // Facebook, but we don’t know if the access token is valid. An access
     // token is invalid if the user logged out of Facebook.
-    
     $loginUrl   = $facebook->getLoginUrl(
             array(
-                'scope'         => 'email,publish_stream,user_birthday,user_location,user_work_history,user_about_me,user_hometown'
+                'scope' => 'email,publish_stream,user_birthday,user_location,user_work_history,user_about_me,user_hometown'
             )
     );
 
