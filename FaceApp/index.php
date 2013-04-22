@@ -1,5 +1,5 @@
 <?php
-
+/*
     include_once './config/lib/facebook/facebook.php';
     
     // Create our Application instance.
@@ -42,5 +42,5 @@
         print_r($d);
         echo '</pre>';
     }
-
+*/
 ?>
