@@ -30,7 +30,7 @@
     //Este é nulo para validar mais pra frente se em algum momento ele foi setado
     $user =   null; //facebook user uid
 
-    include_once "../config/lib/facebook/facebook.php";
+    include_once "config/lib/facebook/facebook.php";
     
     // Create instância da aplicação
     $meu_face_app = new Facebook(array(
@@ -42,13 +42,11 @@
     //Autenticação com facebook
     $user = $meu_face_app->getUser();
     
-    // We may or may not have this data based 
-    // on whether the user is logged in.
-    // If we have a $user id here, it means we know 
-    // the user is logged into
-    // Facebook, but we don’t know if the access token is valid. An access
-    // token is invalid if the user logged out of Facebook.
-    //
+    //Array com as permissões de acessos da conta do facebook
+    $permissoes_usuario = array("email", "publish_stream", "user_birthday", "user_location", "user_work_history", "user_about_me", "user_hometown");
+    
+    //getLoginUrl retorna uma URL que, ao ser clicada no lado cliente, torna o usuário do face um assinante da aplicação.
+    //scope é o escopo da aplicação (o que, do usuário, ela abrange)
     $loginUrl   = $meu_face_app->getLoginUrl(
             array(
                 'scope' => 'email,publish_stream,user_birthday,user_location,user_work_history,user_about_me,user_hometown'
