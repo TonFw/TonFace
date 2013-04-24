@@ -1,7 +1,11 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    include_once './app/fbmain.php';
+    
+    if(primeiroAcesso())
+        echo "É o primeiro acesso";
+    else
+        echo "Não é o primeiro acesso";
+    
+    
 ?>
