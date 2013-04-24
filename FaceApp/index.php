@@ -9,7 +9,7 @@
         'cookie' => true,
     ));
 
-    //Facebook Authentication part
+    //Facebook Authentication part 
     $user = $facebook->getUser();
     
     $loginUrl   = $facebook->getLoginUrl(
