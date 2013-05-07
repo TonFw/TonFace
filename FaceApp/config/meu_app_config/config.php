@@ -2,7 +2,7 @@
      
 /**
  * config.php:
- *	- Arquivo com vari√°veis default conhecidas pelo framework que est√° sendo criado;
+ *	- Arquivo com vari·veis default conhecidas pelo framework que est„o sendo criado;
  */
 $fb_app_id  = $tongarcia_app_id;
 $fb_secret  = $tongarcia_app_secret;
