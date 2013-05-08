@@ -17,26 +17,30 @@ class FBMainController {
     /** Lista de amigos **/
     public $friends = array();
     /** String com a lista de permissões do aplicativo **/
-    public $escopo_permissoes = "";
+    private $escopo_permissoes = "";
+    /** String com a URL do App no facebook **/
+    public $urlApp = "";
     
     //Atributos privados de auxílio
     public $sent = false, $ligado = 1, $desligado = 0;
 
     /** Método que retorna a instância do FBMain, já que o construtor é privado para economizar memória (singleton) **/
-    public static function getInstance($fb_app_id, $fb_secret, $escopo_permissoes) {
-        return new FBMainController($fb_app_id, $fb_secret, $escopo_permissoes);
+    public static function getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain) {
+        return new FBMainController($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
     }//fim getInstance
     
-    private function __construct($fb_app_id, $fb_secret, $escopo_permissoes) {
+    private function __construct($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain) {
         //Create facebook application instance.
         $this->facebook = new Facebook(array(
           'appId'  => $fb_app_id,
           'secret' => $fb_secret,
           'cookie' => true,
+          'domain' => $fb_app_domain
         ));
         
+        $this->urlApp = $fb_app_url;
         $this->user = $this->facebook->getUser();
-        $this->escopo_permissoes = $escopo_permissoes;
+        $this->escopo_permissoes = $fb_app_escopo_permissoes;
         
         //Varifica se veio usuário, isto é, se o usuário está logado no face e assina a aplicação
         if ($this->user) $this->getUserData();
@@ -59,6 +63,7 @@ class FBMainController {
             'canvas' => $this->ligado,
             'fbconnect' => $this->desligado,
             'scope' => $this->escopo_permissoes, //neste caso o escopo é apenas a publicação no mural
+             'redirect_uri' => $this->urlApp
 	));
     }//fim do redirecAssinarApp
 
@@ -92,9 +97,9 @@ class FBMainController {
     
 }//fim da classe FBMain
 
-$objFBMain = FBMainController::getInstance($fb_app_id, $fb_secret, $fb_app_permissoes);
+$objFBMain = FBMainController::getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
 
-if($objFBMain->user) { } 
+if($objFBMain->user) { }
 //Caso não seja um usuário válido então ele manda para o local aonde a pessoa possa assinar a aplicação.
 else echo '<script type="text/javascript"> top.location ="' . $objFBMain->getURLAssinarApp() . '" </script>';
 
