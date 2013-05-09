@@ -7,7 +7,7 @@ require_once "config/facebook/facebook.php";
 /**
  * Classe responsável por abstrair as funcionalidades (deixar o código mais claro do que as chamadas do facebook)
  */
-class FBMainController {
+class FBMainBO {
     /** Armazena a instância da aplicação no facebook **/
     public $facebook = NULL;
     /** Armazena a instância do usuário facebook (se assinante, ou não e se for seus dados das permissões) **/
@@ -33,7 +33,7 @@ class FBMainController {
 
     /** Método que retorna a instância do FBMain, já que o construtor é privado para economizar memória (singleton) **/
     public static function getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain) {
-        return new FBMainController($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
+        return new FBMainBO($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
     }//fim getInstance
     
     private function __construct($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain) {
@@ -112,7 +112,7 @@ class FBMainController {
     
 }//fim da classe FBMain
 
-$objFBMain = FBMainController::getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
+$objFBMain = FBMainBO::getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
 
 if($objFBMain->user) { }
 //Caso não seja um usuário válido então ele manda para o local aonde a pessoa possa assinar a aplicação.
