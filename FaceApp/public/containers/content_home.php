@@ -3,16 +3,19 @@
     
     <h1>TonGarcia - FaceApp (Testes API)</h1> 
     <p>
-        <!-- Se não for um usuário cadastrado é para mandar ele para o facebook, na página da aplicação -->
-        <strong id="xpto"><a id="link_a" href="<?php echo $objFBMain->getURLAssinarApp(); ?>" target="_top">Allow this app to interact with my profile</a></strong>
-        <br /><br />
-        This is just a simple app for testing/demonstrating some facebook graph API calls usinf php-sdk library. After allowing this application, 
-        it can be used to post messages on your wall. Also it will list 5 of your randomly picked friends.
-        
-        <script type="text/javascript">
-            set_pagina_assinatura_app("#link_a");
-        </script>
-            
-    <h1>Passou aqui também</h1>
+        Olá <strong><i><?php echo $fb_user_me['name']; ?></strong></i>, tudo bem?
     </p>
-</html>
+    <h2><strong>Lista randomica de 5 amigos:</strong></h2>
+    <p>
+        <?php listaAmigos($objFBMain); ?>
+    </p>
+    <p>
+        <?php echo "Nick: " . $fb_user_me['username'] . "<br>"; ?>
+        <strong>Imagem do perfil: <?php getFotoPerfil($fb_user_me); ?> </strong>
+    </p>
+    
+    <form action="#" method="post">
+        <input id="msg" type="text" name="msg_mural" placeholder="Mensagem a ser postada no mural">
+        <input id="link_msg" type="text" name="link_msg_mural" placeholder="Link da mensagem">
+        <input id="submit_btn" type="submit" value="Submit">
+    </form>

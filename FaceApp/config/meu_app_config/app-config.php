@@ -10,6 +10,6 @@
     $tongarcia_app_url_face = "https://apps.facebook.com/tongarcia_api/";
     $tongarcia_app_base_url = "https://thawing-hamlet-2991.herokuapp.com/";
     
-    $tongarcia_app_escopo_permissoes = "publish_stream, user_birthday, email, user_hometown, user_location, read_friendlists, user_groups, user_likes, user_photo_video_tags";
+    $tongarcia_app_escopo_permissoes = "publish_stream, user_birthday, email, user_hometown, user_location, read_friendlists, user_groups, user_likes, user_photo_video_tags, read_stream, offline_access";
 
 ?>

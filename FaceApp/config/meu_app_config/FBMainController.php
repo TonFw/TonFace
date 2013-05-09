@@ -14,12 +14,19 @@ class FBMainController {
     public $user = NULL;
     /** Dados do usuário que foram liberados pelas permissões **/
     public $userData = NULL;
-    /** Lista de amigos **/
-    public $friends = array();
     /** String com a lista de permissões do aplicativo **/
     private $escopo_permissoes = "";
+    /** Variável de auxílio na criação do post **/
+    private $postURL = "";
+    /** String de Token de acesso da aplicação **/
+    public $accessToken = NULL;
     /** String com a URL do App no facebook **/
     public $urlApp = "";
+    
+    /** Tipo de usuário que assina a aplicação **/
+    public static $FB_TIPO_USUARIO_ASSINANTE = 0;
+    /** Tipo de usuário que é amigo de quem assina a aplicação **/
+    public static $FB_TIPO_USUARIO_ASSINANTE_FRIEND = 1;
     
     //Atributos privados de auxílio
     public $sent = false, $ligado = 1, $desligado = 0;
@@ -40,7 +47,9 @@ class FBMainController {
         
         $this->urlApp = $fb_app_url;
         $this->user = $this->facebook->getUser();
+        $this->postURL = "https://graph.facebook.com/$fb_app_id/feed";
         $this->escopo_permissoes = $fb_app_escopo_permissoes;
+        $this->accessToken = $this->facebook->getAccessToken();
         
         //Varifica se veio usuário, isto é, se o usuário está logado no face e assina a aplicação
         if ($this->user) $this->getUserData();
@@ -75,25 +84,31 @@ class FBMainController {
             $friendsTmp = $this->facebook->api('/' . $this->userData['id'] . '/friends');
             shuffle($friendsTmp['data']);
             array_splice($friendsTmp['data'], $qtdFriends);
-            $this->friends = $friendsTmp['data'];
+            return $friendsTmp['data'];
 	} catch (FacebookApiException $e) {
             print_r($e); exit;
 	}//fim catch
     }//fim do getFriends
     
     /** Método responsável por enviar mensável ao mural
-     *  @param string $mapp_message passar a mensagem do post por: $_POST['mapp_message']**/
-    public function setMsgMural($mapp_message){
+     *  @param String $msgMural => mensagem a ser enviada ao mural do usuário
+     *  @param String $linkPoster => link de quem está postando a mensagem (dono do app/item que está postando).
+     *  @param String $usuarioDonoMural  "me" = meu mural,  "friend" = mural do meu amigo
+     *  @return id referente ao post gerado
+     */
+    public function setMsgMural($msgMural, $linkPoster, $usuarioDonoMural="me"){
         //Postar a mensagem no mural
         try {
-            $this->facebook->api('/me/feed', 'POST', array(
-            'message' => $mapp_message
-            ));
-            $sent = true;
+            $post = $this->facebook->api('/me/feed', 'POST', array(
+                                                            'link' => $linkPoster,
+                                                            'message' => $msgMural
+                                                        ));
+            
+             return $post['id'];
         } catch (FacebookApiException $e) {
             print_r($e); exit;
         }//fim catch
-    }//fim setMsgMural   
+    }//fim setMsgMural
     
 }//fim da classe FBMain
 
@@ -103,4 +118,17 @@ if($objFBMain->user) { }
 //Caso não seja um usuário válido então ele manda para o local aonde a pessoa possa assinar a aplicação.
 else echo '<script type="text/javascript"> top.location ="' . $objFBMain->getURLAssinarApp() . '" </script>';
 
+?>
+
+<?php 
+
+/* Marcar mural do amigo.
+$facebook->api('/[FRIEND_ID]/feed', 'post', array(
+          'message' => 'test message',
+          'link' => 'http://google.com',
+          'name' => 'test name',
+          'caption' => 'test caption',
+          'description' => 'test long description',
+      ));
+*/
 ?>

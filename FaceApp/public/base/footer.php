@@ -1,7 +1,9 @@
-<?php
+    </body>
+</html>
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+<?php 
+    $msg = $_POST["msg_mural"]; 
+    $link_msg = $_POST["link_msg_mural"]; 
+    if(isset($msg) && isset($link_msg))$objFBMain->setMsgMural($msg, $link_msg);
+    else echo "<script> alert('Um dos campos não foi preenchido!'); </script>" 
 ?>
