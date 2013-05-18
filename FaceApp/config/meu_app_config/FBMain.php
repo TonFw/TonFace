@@ -2,9 +2,7 @@
 
     require_once 'FBMainBO.php';
     $fb_user_me = $objFBMain->facebook->api('/me');
-    echo "<pre>";
-        var_dump($fb_user_me);
-    echo "</pre>";
+    print_r($fb_user_me);
     
     function getFotoPerfil($fb_user, $tipo=0){
       if($tipo==0) echo '<img src="http://graph.facebook.com/' . $fb_user['username'] . '/picture" />';
