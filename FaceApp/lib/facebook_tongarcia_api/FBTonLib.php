@@ -1,13 +1,12 @@
 <?php
 
-require_once "app-config.php";
-require_once "config.php";
-require_once "config/facebook/facebook.php";
+require_once "config/lib-fb-config.php";
+require_once "./lib/facebook/facebook.php";
 
 /**
  * Classe responsável por abstrair as funcionalidades (deixar o código mais claro do que as chamadas do facebook)
  */
-class FBMainBO {
+class FBTonLib {
     /** Armazena a instância da aplicação no facebook **/
     public $facebook = NULL;
     /** Armazena a instância do usuário facebook (se assinante, ou não e se for seus dados das permissões) **/
@@ -33,7 +32,7 @@ class FBMainBO {
 
     /** Método que retorna a instância do FBMain, já que o construtor é privado para economizar memória (singleton) **/
     public static function getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain) {
-        return new FBMainBO($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
+        return new FBTonLib($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
     }//fim getInstance
     
     private function __construct($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain) {
@@ -84,6 +83,7 @@ class FBMainBO {
             $friendsTmp = $this->facebook->api('/' . $this->userData['id'] . '/friends');
             shuffle($friendsTmp['data']);
             array_splice($friendsTmp['data'], $qtdFriends);
+            if($qtdFriends == "all") array_slice($friendsTmp['data'], 1);
             return $friendsTmp['data'];
 	} catch (FacebookApiException $e) {
             print_r($e); exit;
@@ -112,23 +112,12 @@ class FBMainBO {
     
 }//fim da classe FBMain
 
-$objFBMain = FBMainBO::getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
+$objFBTonLib = FBTonLib::getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
 
-if($objFBMain->user) { }
+$user;
+
+if($objFBTonLib->user) { $user = $objFBTonLib->user; }
 //Caso não seja um usuário válido então ele manda para o local aonde a pessoa possa assinar a aplicação.
-else echo '<script type="text/javascript"> top.location ="' . $objFBMain->getURLAssinarApp() . '" </script>';
+else echo '<script type="text/javascript"> top.location ="' . $objFBTonLib->getURLAssinarApp() . '" </script>';
 
-?>
-
-<?php 
-
-/* Marcar mural do amigo.
-$facebook->api('/[FRIEND_ID]/feed', 'post', array(
-          'message' => 'test message',
-          'link' => 'http://google.com',
-          'name' => 'test name',
-          'caption' => 'test caption',
-          'description' => 'test long description',
-      ));
-*/
 ?>

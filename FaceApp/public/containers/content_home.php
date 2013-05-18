@@ -7,7 +7,7 @@
     </p>
     <h2><strong>Lista randomica de 5 amigos:</strong></h2>
     <p>
-        <?php listaAmigos($objFBMain); ?>
+        <?php listaAmigos($objFBTonLib); ?>
     </p>
     <p>
         <?php echo "Nick: " . $fb_user_me['username'] . "<br>"; ?>

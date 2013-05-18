@@ -12,4 +12,10 @@
     
     $tongarcia_app_escopo_permissoes = "publish_stream, user_birthday, email, user_hometown, user_location, read_friendlists, user_groups, user_likes, user_photo_video_tags, read_stream, offline_access";
 
+    //Parte banco de dados
+    $tongarcia_cleardb_username = "b689511cd8bc36";
+    $tongarcia_cleardb_password = "bd06a621";
+    $tongarcia_cleardb_banco = "heroku_ea52e0cde3e240c";
+    $tongarcia_cleardb_host = "us-cdbr-east-03.cleardb.com/$tongarcia_cleardb_banco";
+    
 ?>
