@@ -7,11 +7,13 @@
     </p>
     <h2><strong>Lista randomica de 5 amigos:</strong></h2>
     <p>
-        <?php listaAmigos($objFBTonLib); ?>
+        <?php listaAmigos($objTonLibFB); ?>
     </p>
     <p>
-        <?php echo "Nick: " . $fb_user_me['username'] . "<br>"; ?>
-        <strong>Imagem do perfil: <?php getFotoPerfil($fb_user_me); ?> </strong>
+        <div>
+            <?php echo "<br><br>Nick: " . $fb_user_me['username'] . "<br><br>"; ?>
+            <strong>Imagem do perfil: </strong><?php TonLibFB::getFotoPerfil($fb_user_me); ?>
+        </div>
     </p>
     
     <form action="#" method="post">

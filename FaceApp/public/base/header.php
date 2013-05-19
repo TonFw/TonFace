@@ -1,4 +1,4 @@
-<?php  include_once "lib/facebook_tongarcia_api/test_fb_main.php"; ?>
+<?php  include_once "lib/facebook_tonlib_api/test_fb_main.php"; ?>
 <!DOCTYPE html 
 	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

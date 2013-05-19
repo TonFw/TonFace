@@ -1,12 +1,13 @@
 <?php
 
 require_once "config/lib-fb-config.php";
+require_once "config/TONLIB_INTERFACE.php";
 require_once "./lib/facebook/facebook.php";
 
 /**
  * Classe responsável por abstrair as funcionalidades (deixar o código mais claro do que as chamadas do facebook)
  */
-class FBTonLib {
+class TonLibFB {
     /** Armazena a instância da aplicação no facebook **/
     public $facebook = NULL;
     /** Armazena a instância do usuário facebook (se assinante, ou não e se for seus dados das permissões) **/
@@ -22,17 +23,12 @@ class FBTonLib {
     /** String com a URL do App no facebook **/
     public $urlApp = "";
     
-    /** Tipo de usuário que assina a aplicação **/
-    public static $FB_TIPO_USUARIO_ASSINANTE = 0;
-    /** Tipo de usuário que é amigo de quem assina a aplicação **/
-    public static $FB_TIPO_USUARIO_ASSINANTE_FRIEND = 1;
-    
     //Atributos privados de auxílio
     public $sent = false, $ligado = 1, $desligado = 0;
 
     /** Método que retorna a instância do FBMain, já que o construtor é privado para economizar memória (singleton) **/
     public static function getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain) {
-        return new FBTonLib($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
+        return new TonLibFB($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
     }//fim getInstance
     
     private function __construct($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain) {
@@ -110,14 +106,23 @@ class FBTonLib {
         }//fim catch
     }//fim setMsgMural
     
+    /**
+     * Função estática que retorna a foto do perfil do usuário
+     * @param type $fb_user = objeto retornado pelo facebook api()
+     * @param type $tipo = saber se é o usuário assinante ou se é o amigo do usuário (RECOMENDÁVEL USAR AS CONSTANTES DE TONLIB_INTERFACE) */
+    public static function getFotoPerfil($fb_user, $tipo=0){
+      if($tipo==0) echo '<img src="http://graph.facebook.com/' . $fb_user[username] . '/picture" />';
+      else if($tipo==1) return '<img src="http://graph.facebook.com/' . $fb_user[id] . '/picture" />';
+    }
+    
 }//fim da classe FBMain
 
-$objFBTonLib = FBTonLib::getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
+$objTonLibFB = TonLibFB::getInstance($fb_app_id, $fb_secret, $fb_app_escopo_permissoes, $fb_app_url, $fb_app_domain);
 
 $user;
 
-if($objFBTonLib->user) { $user = $objFBTonLib->user; }
+if($objTonLibFB->user) { $user = $objTonLibFB->user; }
 //Caso não seja um usuário válido então ele manda para o local aonde a pessoa possa assinar a aplicação.
-else echo '<script type="text/javascript"> top.location ="' . $objFBTonLib->getURLAssinarApp() . '" </script>';
+else echo '<script type="text/javascript"> top.location ="' . $objTonLibFB->getURLAssinarApp() . '" </script>';
 
 ?>

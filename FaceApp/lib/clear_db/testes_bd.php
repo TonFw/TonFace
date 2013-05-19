@@ -27,9 +27,9 @@
     $campos = "id_amigo_facebook, nome_amigo, $id_facebook";
     
     //Pegar todos os amigos
-    $fb_all_friends = $objFBTonLib->getFriends("all");
+    $fb_all_friends = $objTonLibFB->getFriends("all");
     foreach ($fb_all_friends as $amigo) 
-        $objFBTonLib->inserir($tabela, $campos, "$amigo[name], $amigo[id]");
+        $objTonLibFB->inserir($tabela, $campos, "$amigo[name], $amigo[id]");
     */
     
     
