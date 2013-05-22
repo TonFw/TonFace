@@ -1,4 +1,14 @@
+<?php 
+    //Teste estruturado, ClearDB
+    
+    
+    
+    
+?>
+
+
 <?php
+/*
     echo "ENTROU NO TESTE BD";
     include_once "config/facebook_tongarcia_api/config.php";
     require_once "ClearDBConnection.php";
@@ -20,7 +30,7 @@
     $tabela = "usuariofacebook";
     $campos = "nome, email, id_facebook";
     $objBD->inserir($tabela, $campos, "`$nome`, `$email`, `$id_facebook`");
-
+*/
     /*
     //Inserção dos amigos do usuário
     $tabela = "Amigo";
@@ -30,7 +40,5 @@
     $fb_all_friends = $objTonLibFB->getFriends("all");
     foreach ($fb_all_friends as $amigo) 
         $objTonLibFB->inserir($tabela, $campos, "$amigo[name], $amigo[id]");
-    */
-    
-    
+    */  
 ?>
