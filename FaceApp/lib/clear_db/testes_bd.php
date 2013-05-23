@@ -1,9 +1,51 @@
+<meta charset="UTF-8">
+
 <?php 
-    //Teste estruturado, ClearDB
     
+    teste_mysqli();
+    //teste_mysql_connect();
+
+    function teste_mysql_connect() {
+        //Definição das constantes
+        define ('DB_USER','b689511cd8bc36');
+        define ('DB_PASSWORD','bd06a621');
+        define ('DB_HOST','us-cdbr-east.cleardb.com');
+        define ('DB_DATABASE','heroku_ea52e0cde3e240c');
+        
+        $url=parse_url(getenv("mysql://b689511cd8bc36:bd06a621@us-cdbr-east-03.cleardb.com/heroku_ea52e0cde3e240c"));
+        print_r($url);
+        
+    }
+
+    function teste_mysqli(){
+        //Definição das constantes
+        define ('DB_USER','b689511cd8bc36');
+        define ('DB_PASSWORD','bd06a621');
+        define ('DB_HOST','us-cdbr-east.cleardb.com'); 
+        //define ('DB_HOST','us-cdbr-east-03.cleardb.com/heroku_ea52e0cde3e240c');
+        define ('DB_DATABASE','heroku_ea52e0cde3e240c');
+
+        $instance = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, "3306");
+    }
     
+    /*
     
+    $cleardb_url = "mysql://". DB_USER .":". DB_PASSWORD ."@us-mm-auto-dca-01.cleardb.com/". DB_DATABASE ."?reconnect=true";
     
+    echo $cleardb_url . "<br>";
+    $url=parse_url(getenv($cleardb_url));
+    
+    print_r($url);
+    
+    $server = $url[DB_HOST];
+    $username = $url[DB_USER];
+    $password = $url[DB_PASSWORD];
+    $db = substr($url["path"],1);
+
+    mysql_connect($server, $username, $password);
+    
+    mysql_select_db($db);
+    */
 ?>
 
 
