@@ -111,8 +111,8 @@ class TonLibFB {
      * @param type $fb_user = objeto retornado pelo facebook api()
      * @param type $tipo = saber se é o usuário assinante ou se é o amigo do usuário (RECOMENDÁVEL USAR AS CONSTANTES DE TONLIB_INTERFACE) */
     public static function getFotoPerfil($fb_user, $tipo=0){
-      if($tipo==0) echo '<img src="http://graph.facebook.com/' . $fb_user[username] . '/picture" />';
-      else if($tipo==1) return '<img src="http://graph.facebook.com/' . $fb_user[id] . '/picture" />';
+      if($tipo==0) echo '<img src="https://graph.facebook.com/' . $fb_user[username] . '/picture" />';
+      else if($tipo==1) return '<img src="https://graph.facebook.com/' . $fb_user[id] . '/picture" />';
     }
     
 }//fim da classe FBMain

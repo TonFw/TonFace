@@ -1,6 +1,7 @@
 <?php 
 
-    require_once 'TonLibFB.php';
+    require_once "TonLibFB.php";
+    
     $fb_user_me = $objTonLibFB->facebook->api('/me');
     print_r($fb_user_me);
     

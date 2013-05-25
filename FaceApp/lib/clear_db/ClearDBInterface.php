@@ -1,5 +1,7 @@
 <?php
 
+echo "Entrou no ClearDBInterface!<br>";
+
 /** Interface para uso do ClearDB **/
 interface ClearDBInterface {
     

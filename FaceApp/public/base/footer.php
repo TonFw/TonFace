@@ -11,8 +11,19 @@
 ?>
 
 <?php 
+    
     //Parte do banco de dados
-    include_once "config/clearDB/testes_bd.php";   
+    include_once "lib/clear_db/testes_bd.php";   
+    
+    
+    
+    
+    /*
+     * array(6) { ["scheme"]=> string(5) "mysql" 
+     *            ["host"]=> string(27) "us-cdbr-east-03.cleardb.com" 
+     *            ["user"]=> string(14) "b689511cd8bc36" ["pass"]=> string(8) "bd06a621" 
+     *            ["path"]=> string(23) "/heroku_ea52e0cde3e240c" ["query"]=> string(14) "reconnect=true" }
+     */
     
     
 ?>
