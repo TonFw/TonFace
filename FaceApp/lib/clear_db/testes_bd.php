@@ -19,10 +19,16 @@
     echo "<br><br>Testes de recuperação dos atributos do usuário: $fb_user_name, $fb_user_email, $fb_user_id";
     
     
-    $tabela = "usuariofacebook";
+    $tabela = "usuario_facebook";
     $campos = "nome, email, id_facebook";
     $dados = "'$fb_user_name', '$fb_user_email', '$fb_user_id'";
-    $clearDB->inserir($tabela, $campos, $dados);
+    
+    $dadosPDO = array(':fb_user_name' =>$fb_user_name,
+                      ':fb_user_email' => $fb_user_email,
+                      ':fb_user_id' => $fb_user_id);
+    
+    //$clearDB->inserir($tabela, $campos, $dadosPDO);
     //$clearDB->testeDB();
-    $clearDB->testeDBHeroku();
+    echo "<br><br><H1>Pessoas que assinam a aplicação: </H1>";
+    $clearDB->testeDBHeroku($tabela);
 ?>
