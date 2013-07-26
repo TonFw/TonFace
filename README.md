@@ -1,4 +1,4 @@
-FaceApp
+FaceAPI
 =======
 
-Testes API Face
+Criação de uma API para maior abstração da API do Facebook.
