@@ -24,10 +24,10 @@ Criação de uma API para maior abstração da API do Facebook.
 __TODOS__ os __relacionamentos__ com o __Perfil básico__ são __N x N__
 
 <br>
-### API
+### API RESTful
 ------------------
 
-#### Uso deste projeto como uma API
+#### Uso deste projeto como uma API RESTful com Slim
 
 
 <br>
