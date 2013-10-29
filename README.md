@@ -12,4 +12,4 @@ Criação de uma API para maior abstração da API do Facebook.
  
  <br>
  * Para cada novo atributo a ser associado no Facebook é apenas ID e Nome para puxar do hash, como Time: 
- <br>Array ( [id] => 19034719952 [name] => Real Madrid C.F. ).
+  * Array ( [id] => 19034719952 [name] => Real Madrid C.F. ).
