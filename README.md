@@ -22,3 +22,21 @@ Criação de uma API para maior abstração da API do Facebook.
 
 <br><br>
 __TODOS__ os __relacionamentos__ com o __Perfil básico__ são __N x N__
+
+<br>
+### API
+------------------
+
+#### Uso deste projeto como uma API
+
+
+<br>
+### Framework
+------------------
+
+#### Uso deste projeto como um Framework
+
+
+
+
+
