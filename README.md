@@ -16,3 +16,6 @@ Criação de uma API para maior abstração da API do Facebook.
   * [favorite_teams] => Array ( [0] => Array ( [id] => 191025650976045 [name] => Real Guará ) [1] => Array ( [id] => 19034719952 [name] => Real Madrid C.F. )
  * Educação 
   * [education] => Array ( [0] => Array ( [school] => Array ( [id] => 103125803065667 [name] => Colégio Rogacionista ) [year] => Array ( [id] => 136328419721520 [name] => 2009 ) [type] => High School ) [1] => Array ( [school] => Array ( [id] => 113901608620360 [name] => Universidade de Brasília ) [type] => College ) )
+
+<br><br>
+__TODOS__ os __relacionamentos__ com o __Perfil básico__ são __N x N__
