@@ -22,8 +22,16 @@
         echo "{'erro':".json_encode($erroObj)."}";
     });
     
+    $app->get('/', function(){ 
+        echo  "Acesso ao index!";
+    });
+    
+    $app->get('/:nome_apresentacao', function($nome_apresentacao){
+        echo "Index perfil de $nome_apresentacao";
+    });
+    
     // GET route
-    $app->get('/:nome_apresentacao(/:controller)(/:action)(/:param+)',
+    $app->get('(/:nome_apresentacao)(/:controller)(/:action)(/:param+)',
         function ($nome_apresentacao, $controller=null, $action=null, $param=null) {
             //  Verifica o controller a ser chamado
             if(!$controller) $controller = 'UserController';
