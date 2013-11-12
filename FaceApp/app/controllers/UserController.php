@@ -6,7 +6,11 @@
  * @author ilton_garcia
  */
 class UserController {
-    //put your code here
+    
+    public function xpto($params){
+        return $params;
+    }
+    
 }
 
 ?>

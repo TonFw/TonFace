@@ -2,6 +2,7 @@
 
     //require_once "SDK/TonFace/tonlib_fb/test_fb_main.php";
     require 'SDK/Slim/Slim.php';
+    require_once 'SDK/util.php';
     
     \Slim\Slim::registerAutoloader();
     
@@ -22,24 +23,45 @@
     });
     
     // GET route
-    $app->get('/:nome_apresentacao(/:controller)(/:action)(/:param)',
-        function ($user_name, $controller=null, $action=null, $param=null) {
+    $app->get('/:nome_apresentacao(/:controller)(/:action)(/:param+)',
+        function ($nome_apresentacao, $controller=null, $action=null, $param=null) {
+            //  Verifica o controller a ser chamado
             if(!$controller) $controller = 'UserController';
             else $controller .= 'Controller';
-            echo "Nick: $user_name, controller: $controller, action: $action, param: $param" . "<br>";
 
-            //var_dump($objTonLibFB);
             include_once "app/controllers/{$controller}.php";
-            $classe = new $controller();
-            $retorno = call_user_func_array(array($classe, $action), array($param));
             
-            /*
-            include_once "classes/{$controler}.php";
-            $classe = new $controler();
-            $retorno = call_user_func_array(array($classe, $action), array($parameter));
-
-            echo '{"result":'.json_encode($retorno).'}';
-            */
+            //var_dump($objTonLibFB);
+            
+            //  Instancia o controller, prepara o dicionário para passar como parametro e recupera o retorno pela call_back
+            $classe = new $controller();
+            $param_array = array(array('param' => $param, 'nome_apresentacao' => $nome_apresentacao));
+            $retorno = call_user_func_array(array($classe, $action), $param_array);
+            
+            // Retorna o JSON validando se já é um array multidimensional, se não for ele cria uma outra dimensão vazia
+            if(count_dimension($retorno)>2) echo json_encode($retorno);
+            else echo json_encode(array($retorno)); 
+        }
+    );
+    
+    // POST route
+    $app->post('/:nome_apresentacao(/:controller)(/:action)(/:param+)',
+        function ($nome_apresentacao, $controller=null, $action=null, $param=null) {
+        
+        }
+    );
+    
+    // PUT route
+    $app->post('/:nome_apresentacao(/:controller)(/:action)(/:param+)',
+        function ($nome_apresentacao, $controller=null, $action=null, $param=null) {
+        
+        }
+    );
+    
+    // DELETE route
+    $app->post('/:nome_apresentacao(/:controller)(/:action)(/:param+)',
+        function ($nome_apresentacao, $controller=null, $action=null, $param=null) {
+        
         }
     );
     
