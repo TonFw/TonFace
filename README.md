@@ -8,7 +8,7 @@ Criação de uma API para maior abstração da API do Facebook.
 ------------------
 
 #### Perfil básico
- ![image](https://github.com/TonGarcia/FaceAPI/blob/sprint1/FaceApp/modelagem/perfil-basico-RedeSocial.png?raw=true) 
+ ![image](https://github.com/TonGarcia/TonFace/blob/nova-arquitetura-2.X/FaceApp/SDK/TonFace/modelagens/perfil-basico-RedeSocial.png?raw=true) 
  
  <br>
  Para cada novo atributo a ser associado no Facebook é apenas ID e Nome para puxar do hash, como em: 
