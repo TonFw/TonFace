@@ -1,6 +1,6 @@
 <?php
 
-    class TonModel {
+    class MyModel {
         function __construct() {
             echo "Sou o " . __CLASS__;
         }        

@@ -1,6 +1,6 @@
 <?php
 
-    require_once "SDK/TonFace/tonlib_fb/test_fb_main.php";
+    //require_once "SDK/TonFace/tonlib_fb/test_fb_main.php";
     require 'SDK/Slim/Slim.php';
     
     \Slim\Slim::registerAutoloader();
@@ -22,11 +22,15 @@
     });
     
     // GET route
-    $app->get('/:controler/:action(/:parameter)',
-        function ($controler, $action, $parameter=null) {
+    $app->get('/:controler(/:action)(/:parameter)',
+        function ($controler, $action=null, $parameter=null) {
+            $controler .= 'Controller';
             echo "controler: $controler, action: $action, param: $parameter" . "<br>";
 
-            var_dump($objTonLibFB);
+            //var_dump($objTonLibFB);
+            include_once "app/controllers/{$controler}.php";
+            $classe = new $controler();
+            //$retorno = call_user_func_array(array($classe, $action), array($parameter));
             /*
             include_once "classes/{$controler}.php";
             $classe = new $controler();
