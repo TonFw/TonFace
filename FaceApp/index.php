@@ -35,7 +35,7 @@
             
             //  Instancia o controller, prepara o dicionário para passar como parametro e recupera o retorno pela call_back
             $classe = new $controller();
-            $param_array = array(array('param' => $param, 'nome_apresentacao' => $nome_apresentacao));
+            $param_array = array(array('nome_apresentacao' => $nome_apresentacao, 'param' => $param));
             $retorno = call_user_func_array(array($classe, $action), $param_array);
             
             // Retorna o JSON validando se já é um array multidimensional, se não for ele cria uma outra dimensão vazia
