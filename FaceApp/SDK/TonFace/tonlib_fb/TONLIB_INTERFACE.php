@@ -1,5 +1,9 @@
 <?php
-
+    /**
+     * Description of UserController
+     *
+     * @author ilton_garcia
+     */
     /** Interface com a definição das constantes utilizadas no TonLibFB **/ 
     interface TonLibInterface {
         /** Tipo de usuário que assina a aplicação **/

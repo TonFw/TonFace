@@ -22,15 +22,17 @@
     });
     
     // GET route
-    $app->get('/:controler(/:action)(/:parameter)',
-        function ($controler, $action=null, $parameter=null) {
-            $controler .= 'Controller';
-            echo "controler: $controler, action: $action, param: $parameter" . "<br>";
+    $app->get('/:nome_apresentacao(/:controller)(/:action)(/:param)',
+        function ($user_name, $controller=null, $action=null, $param=null) {
+            if(!$controller) $controller = 'UserController';
+            else $controller .= 'Controller';
+            echo "Nick: $user_name, controller: $controller, action: $action, param: $param" . "<br>";
 
             //var_dump($objTonLibFB);
-            include_once "app/controllers/{$controler}.php";
-            $classe = new $controler();
-            //$retorno = call_user_func_array(array($classe, $action), array($parameter));
+            include_once "app/controllers/{$controller}.php";
+            $classe = new $controller();
+            $retorno = call_user_func_array(array($classe, $action), array($param));
+            
             /*
             include_once "classes/{$controler}.php";
             $classe = new $controler();

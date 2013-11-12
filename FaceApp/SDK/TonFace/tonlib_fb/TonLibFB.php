@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Description of UserController
+ *
+ * @author ilton_garcia
+ */
 require_once "config/lib-fb-config.php";
 require_once "TONLIB_INTERFACE.php";
 require_once "lib/facebook/facebook.php";
