@@ -22,53 +22,55 @@
         echo "{'erro':".json_encode($erroObj)."}";
     });
     
+    // Aqui deve renderizar a tela para fazer login no face (a que tem aquela de confirmar que assina o App e tals
     $app->get('/', function(){ 
-        echo  "Acesso ao index!";
+        render('app/views/perfil.html');
     });
     
+    // Aqui deve renderizar a tela com o Perfil do usuário
     $app->get('/:nome_apresentacao', function($nome_apresentacao){
         echo "Index perfil de $nome_apresentacao";
     });
     
-    // GET route
-    $app->get('(/:nome_apresentacao)(/:controller)(/:action)(/:param+)',
-        function ($nome_apresentacao, $controller=null, $action=null, $param=null) {
+    // GET route --> renderiza o retorno da funcionalidade de um dado controller
+    $app->get('(/:controller)(/:nome_apresentacao)(/:action)(/:param+)',
+        function ($controller, $nome_apresentacao, $action=null, $param=null) {
             //  Verifica o controller a ser chamado
-            if(!$controller) $controller = 'UserController';
-            else $controller .= 'Controller';
+            $controller .= 'Controller';
+            
+            // Validação dos parametros
+            if(!@include_once("app/controllers/{$controller}.php")) render ("app/public/404.php");
 
-            include_once "app/controllers/{$controller}.php";
-            
-            //var_dump($objTonLibFB);
-            
             //  Instancia o controller, prepara o dicionário para passar como parametro e recupera o retorno pela call_back
-            $classe = new $controller();
+            $objCtrl = new $controller();
             $param_array = array(array('nome_apresentacao' => $nome_apresentacao, 'param' => $param));
-            $retorno = call_user_func_array(array($classe, $action), $param_array);
+            
+            if($action) $retorno = call_user_func_array(array($objCtrl, $action), $param_array);
+            else render('app/views/perfil.html');
             
             // Retorna o JSON validando se já é um array multidimensional, se não for ele cria uma outra dimensão vazia
             if(count_dimension($retorno)>2) echo json_encode($retorno);
-            else echo json_encode(array($retorno)); 
+            else echo json_encode(array($retorno));
         }
     );
     
     // POST route
-    $app->post('/:nome_apresentacao(/:controller)(/:action)(/:param+)',
-        function ($nome_apresentacao, $controller=null, $action=null, $param=null) {
+    $app->post('(/:controller)(/:nome_apresentacao)(/:action)(/:param+)',
+        function ($controller, $nome_apresentacao, $action=null, $param=null) {
         
         }
     );
     
     // PUT route
-    $app->post('/:nome_apresentacao(/:controller)(/:action)(/:param+)',
-        function ($nome_apresentacao, $controller=null, $action=null, $param=null) {
+    $app->put('(/:controller)(/:nome_apresentacao)(/:action)(/:param+)',
+        function ($controller, $nome_apresentacao, $action=null, $param=null) {
         
         }
     );
     
     // DELETE route
-    $app->post('/:nome_apresentacao(/:controller)(/:action)(/:param+)',
-        function ($nome_apresentacao, $controller=null, $action=null, $param=null) {
+    $app->delete('(/:controller)(/:nome_apresentacao)(/:action)(/:param+)',
+        function ($controller, $nome_apresentacao, $action=null, $param=null) {
         
         }
     );
