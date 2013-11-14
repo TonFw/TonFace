@@ -111,6 +111,14 @@ class TonLibFB {
     }//fim setMsgMural
     
     /**
+     * Método que faz o login no facebook e retorna a sessão com o login do face
+     * @return SESSION login_face
+     */
+    public function login(){
+     return $this->facebook->api('/me');   
+    }
+    
+    /**
      * Função estática que retorna a foto do perfil do usuário
      * @param type $ton_user = objeto retornado pelo facebook api()
      * @param type $tipo = saber se é o usuário assinante ou se é o amigo do usuário (RECOMENDÁVEL USAR AS CONSTANTES DE TONLIB_INTERFACE) */
