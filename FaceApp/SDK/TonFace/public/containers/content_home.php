@@ -7,7 +7,7 @@
     </p>
     <h2><strong>Lista randomica de 5 amigos:</strong></h2>
     <p>
-        <?php listaAmigos($objTonLibFB); ?>
+        <?php listaAmigos($ton_fb); ?>
     </p>
     <p>
         <div>
