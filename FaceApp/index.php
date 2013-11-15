@@ -23,8 +23,8 @@
     });
     
     // Aqui deve renderizar a tela para fazer login no face (a que tem aquela de confirmar que assina o App e tals
-    $app->get('/', function(){ 
-        render('app/views/perfil.html');
+    $app->post('/', function(){
+        require_once 'SDK/TonFace/tonlib_fb/TonLibFB.php';
     });
     
     // Aqui deve renderizar a tela com o Perfil do usuário
