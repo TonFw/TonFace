@@ -14,9 +14,9 @@ require_once "lib/facebook/facebook.php";
 class TonLibFB {
     /** Armazena a instância da aplicação no facebook **/
     public $facebook = NULL;
-    /** Armazena a instância do usuário facebook (se assinante, ou não e se for seus dados das permissões) **/
+    /** Armazena o ID do usuário, útil para pegar imagem do perfil, por exemplo **/
     public $user = NULL;
-    /** Dados do usuário que foram liberados pelas permissões **/
+    /** Array com todos os dados do usuário que foram liberados pelas permissões **/
     public $userData = NULL;
     /** String com a lista de permissões do aplicativo **/
     private $escopo_permissoes = "";
@@ -51,16 +51,19 @@ class TonLibFB {
         $this->accessToken = $this->facebook->getAccessToken();
         
         //Varifica se veio usuário, isto é, se o usuário está logado no face e assina a aplicação
-        if ($this->user) $this->getUserData();
-        
+        if ($this->user) $this->logar();
+        else die('<script type="text/javascript"> top.location ="' . $this->getURLAssinarApp() . '" </script>');
     }//fim construtor
     
-    /** Retorno do objeto usuário do facebook **/
-    private function getUserData(){
+    /**
+     * Método que faz o login no facebook e retorna a sessão com o login do face
+     * @return SESSION login_face
+     */
+    private function logar(){
         try {
             $this->userData = $this->facebook->api('/me');
         } catch (FacebookApiException $e) {
-            print_r($e); exit;
+            echo 'Erro face-api: <br>'; var_dump($e); exit;
         }//fim catch
     }//fim getUserData
     
@@ -111,14 +114,6 @@ class TonLibFB {
     }//fim setMsgMural
     
     /**
-     * Método que faz o login no facebook e retorna a sessão com o login do face
-     * @return SESSION login_face
-     */
-    public function login(){
-     return $this->facebook->api('/me');   
-    }
-    
-    /**
      * Função estática que retorna a foto do perfil do usuário
      * @param type $ton_user = objeto retornado pelo facebook api()
      * @param type $tipo = saber se é o usuário assinante ou se é o amigo do usuário (RECOMENDÁVEL USAR AS CONSTANTES DE TONLIB_INTERFACE) */
@@ -129,12 +124,8 @@ class TonLibFB {
     
 }//fim da classe FBMain
 
-$objTonLibFB = TonLibFB::getInstance($ton_app_id, $ton_secret, $ton_app_escopo_permissoes, $ton_app_url, $ton_app_domain);
+$ton_fb = TonLibFB::getInstance($ton_app_id, $ton_secret, $ton_app_escopo_permissoes, $ton_app_url, $ton_app_domain);
+$user_id = $ton_fb->user;
+$user_attrs = $ton_fb->userData;
 
-$user;
-function redirect_face(){
-    if($objTonLibFB->user) { $user = $objTonLibFB->user; }
-    //Caso não seja um usuário válido então ele manda para o local aonde a pessoa possa assinar a aplicação.
-    else echo '<script type="text/javascript"> top.location ="' . $objTonLibFB->getURLAssinarApp() . '" </script>';
-}
 ?>
