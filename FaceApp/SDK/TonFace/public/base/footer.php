@@ -13,7 +13,7 @@
 <?php 
     
     //Parte do banco de dados
-    include_once "lib/clear_db/testes_bd.php";   
+    //include_once "lib/clear_db/testes_bd.php";   
     
     
     

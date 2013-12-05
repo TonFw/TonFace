@@ -125,7 +125,7 @@ class TonLibFB {
 }//fim da classe FBMain
 
 $ton_fb = TonLibFB::getInstance($ton_app_id, $ton_secret, $ton_app_escopo_permissoes, $ton_app_url, $ton_app_domain);
-$user_id = $ton_fb->user;
-$user_attrs = $ton_fb->userData;
+$fb_user_id = $ton_fb->user; // Retorna um ID
+$fb_user_corrente = $ton_fb->userData; // Retorna uma Array
 
 ?>

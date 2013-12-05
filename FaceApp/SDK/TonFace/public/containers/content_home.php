@@ -1,9 +1,11 @@
-    <script type="text/javascript" src="./public/js/jquery.js"></script>
-    <script type="text/javascript" src="./public/js/minhas_funcoes_js.js"></script>
-    
+<!--
+    <script type="text/javascript" src="public/js/jquery.js"></script>
+    <script type="text/javascript" src="public/js/minhas_funcoes_js.js"></script>
+-->
+
     <h1>TonGarcia - FaceApp (Testes API)</h1> 
     <p>
-        Olá <strong><i><?php echo $fb_user_me['name']; ?></strong></i>, tudo bem?
+        Olá <strong><i><?php echo $fb_user_corrente['name']; ?></strong></i>, tudo bem?
     </p>
     <h2><strong>Lista randomica de 5 amigos:</strong></h2>
     <p>
@@ -11,8 +13,8 @@
     </p>
     <p>
         <div>
-            <?php echo "<br><br>Nick: " . $fb_user_me['username'] . "<br><br>"; ?>
-            <strong>Imagem do perfil: </strong><?php TonLibFB::getFotoPerfil($fb_user_me); ?>
+            <?php echo "<br><br>Nick: " . $fb_user_corrente['username'] . "<br><br>"; ?>
+            <strong>Imagem do perfil: </strong><?php TonLibFB::getFotoPerfil($fb_user_corrente); ?>
         </div>
     </p>
     

@@ -1,4 +1,4 @@
-<?php  include_once "SDK/TonFace/tonlib_fb/test_fb_main.php"; redirect_face(); ?>
+<?php include_once "tonlib_fb/test_fb_main.php"; /*redirect_face();*/ ?>
 <!DOCTYPE html 
 	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

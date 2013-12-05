@@ -1,9 +1,8 @@
 <?php 
 
     require_once "TonLibFB.php";
-    
-    $fb_user_me = $ton_fb->facebook->api('/me');
-    print_r($fb_user_me);
+
+    print_r($fb_user_corrente);
     
     function listaAmigos($ton_fb, $qtd_amigos_retorno = 5){
         $fb_user_amigos_random = $ton_fb->getFriends($qtd_amigos_retorno);

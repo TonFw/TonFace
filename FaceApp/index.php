@@ -1,5 +1,5 @@
 <?php
-
+/*
     //require_once "SDK/TonFace/tonlib_fb/test_fb_main.php";
     require 'SDK/Slim/Slim.php';
     require_once 'SDK/util.php';
@@ -76,4 +76,5 @@
     );
     
     $app->run();
+*/
 ?>
