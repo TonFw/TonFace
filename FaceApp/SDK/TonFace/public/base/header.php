@@ -7,7 +7,7 @@
     <title>TonGarcia - FaceApp</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style type="text/css">
-            body { font-family:Verdana,"Lucida Grande",Lucida,sans-serif; font-size: 12px}
+            body { font-family:Verdana,"Lucida Grande",Lucida,sans-serif; font-size: 12px; }
     </style>
 </head>
 <body>
