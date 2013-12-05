@@ -70,12 +70,12 @@ class TonLibFB {
     /** Método responsável por criar o array de configuração das permissões do app **/
     public function getURLAssinarApp(){
         //Cai aqui se o usuário não for assinante da aplicação
-	 return $this->facebook->getLoginUrl(array(
+   return $this->facebook->getLoginUrl(array(
             'canvas' => $this->ligado,
             'fbconnect' => $this->desligado,
             'scope' => $this->escopo_permissoes, //neste caso o escopo é apenas a publicação no mural
              'redirect_uri' => $this->urlApp
-	));
+  ));
     }//fim do redirecAssinarApp
 
 
@@ -88,9 +88,9 @@ class TonLibFB {
             array_splice($friendsTmp['data'], $qtdFriends);
             if($qtdFriends == "all") array_slice($friendsTmp['data'], 1);
             return $friendsTmp['data'];
-	} catch (FacebookApiException $e) {
+  } catch (FacebookApiException $e) {
             print_r($e); exit;
-	}//fim catch
+  }//fim catch
     }//fim do getFriends
     
     /** Método responsável por enviar mensável ao mural
@@ -120,6 +120,16 @@ class TonLibFB {
     public static function getFotoPerfil($ton_user, $tipo=0){
       if($tipo==0) echo '<img src="https://graph.facebook.com/' . $ton_user[username] . '/picture" />';
       else if($tipo==1) return '<img src="https://graph.facebook.com/' . $ton_user[id] . '/picture" />';
+    }
+    
+    /**
+     * Método para executar queries do face
+     * @param String $query */
+    public function fb_query($fql){
+        return $this->facebook->api(array(
+                                            'method' => 'fql.query',
+                                            'query' => $fql
+                                          ));
     }
     
 }//fim da classe FBMain
