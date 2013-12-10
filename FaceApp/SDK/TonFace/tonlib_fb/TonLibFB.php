@@ -70,12 +70,12 @@ class TonLibFB {
     /** Método responsável por criar o array de configuração das permissões do app **/
     public function getURLAssinarApp(){
         //Cai aqui se o usuário não for assinante da aplicação
-   return $this->facebook->getLoginUrl(array(
+	 return $this->facebook->getLoginUrl(array(
             'canvas' => $this->ligado,
             'fbconnect' => $this->desligado,
             'scope' => $this->escopo_permissoes, //neste caso o escopo é apenas a publicação no mural
              'redirect_uri' => $this->urlApp
-  ));
+	));
     }//fim do redirecAssinarApp
 
 
@@ -88,9 +88,9 @@ class TonLibFB {
             array_splice($friendsTmp['data'], $qtdFriends);
             if($qtdFriends == "all") array_slice($friendsTmp['data'], 1);
             return $friendsTmp['data'];
-  } catch (FacebookApiException $e) {
+	} catch (FacebookApiException $e) {
             print_r($e); exit;
-  }//fim catch
+	}//fim catch
     }//fim do getFriends
     
     /** Método responsável por enviar mensável ao mural
@@ -115,11 +115,16 @@ class TonLibFB {
     
     /**
      * Função estática que retorna a foto do perfil do usuário
-     * @param type $ton_user = objeto retornado pelo facebook api()
-     * @param type $tipo = saber se é o usuário assinante ou se é o amigo do usuário (RECOMENDÁVEL USAR AS CONSTANTES DE TONLIB_INTERFACE) */
-    public static function getFotoPerfil($ton_user, $tipo=0){
-      if($tipo==0) echo '<img src="https://graph.facebook.com/' . $ton_user[username] . '/picture" />';
-      else if($tipo==1) return '<img src="https://graph.facebook.com/' . $ton_user[id] . '/picture" />';
+     * @param type $ton_user = objeto retornado pelo facebook api(). 
+     * Exemplo ton user evento: $eventos = $ton_fb->facebook->api('/'. $amigos_ordenados[4]['uid'] .'/events'); $eventos['data'][n]
+     * @param type $tipo = saber se é o usuário assinante ou se é o amigo do usuário (RECOMENDÁVEL USAR AS CONSTANTES DE TONLIB_INTERFACE)
+     * @param boolean $eh_grande? Se true imprime uma imagem do tamanho da postagem se não imprime um thumbail */
+    public static function getFotoPerfil($ton_user, $tipo=0, $img_grande=false){
+        $img_append = '';
+        if($img_grande) $img_append = '?type=large';
+        if($tipo==TonLibInterface::FB_TIPO_USUARIO_ASSINANTE) echo '<img src="https://graph.facebook.com/' . $ton_user[username] . '/picture'.$img_grande.'" />';
+        else if($tipo==TonLibInterface::FB_TIPO_USUARIO_ASSINANTE_FRIEND) echo '<img src="https://graph.facebook.com/' . $ton_user[id] . '/picture'.$img_grande.'" />';
+        else if($tipo==TonLibInterface::FB_TIPO_EVENTO)  die('<img src="https://graph.facebook.com/'. $ton_user['id'] .'/picture'.$img_append.'">');
     }
     
     /**
@@ -130,6 +135,30 @@ class TonLibFB {
                                             'method' => 'fql.query',
                                             'query' => $fql
                                           ));
+    }
+    
+    /*
+     * Retorna uma array com os eventos em que os amigos vão
+     * @param $amigos = array ou objeto face de amigos */
+    function getEventosAmigos($amigos=NULL){
+        if($amigos==NULL) return; // fazer depois para pegar os amigos de outra função aqui dentro
+        $eventos = array();
+
+        $count = 0;
+        foreach ($amigos as $amigo) {
+            //$evento_corrente = $this->facebook->api('/'. $amigo['uid'] .'/events');
+            $fql_eventos_amigo_corrente = 'SELECT eid FROM event_member WHERE uid = ' . $amigo['uid'];
+            $evento_corrente = $this->facebook->api('/'. $amigo['uid'] .'/events');
+            $eventos_amigo_corrente = $this->fb_query($fql_eventos_amigo_corrente);
+            
+            print_r($eventos_amigo_corrente);echo '<br><br><br>';
+            print_r($evento_corrente);die;
+            if(empty($evento_corrente['data'])) continue;
+            
+            array_push($eventos, $eventos_amigo_corrente['data']);
+        }
+        
+        return $eventos;
     }
     
 }//fim da classe FBMain
