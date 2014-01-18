@@ -10,6 +10,6 @@
     $my_app_url_face = "https://apps.facebook.com/proumoevents/";
     $my_app_base_url = "https://proumo-mvp.herokuapp.com/";
     
-    $my_app_escopo_permissoes = "publish_stream, email, user_location, read_friendlists, user_events, friends_events, rsvp_event";
+    $my_app_escopo_permissoes = "email, read_friendlists";
     
 ?>
