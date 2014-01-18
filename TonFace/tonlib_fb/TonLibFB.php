@@ -75,8 +75,8 @@ class TonLibFB {
 	 return $this->facebook->getLoginUrl(array(
             'canvas' => $this->ligado,
             'fbconnect' => $this->desligado,
-            'scope' => $this->escopo_permissoes, //neste caso o escopo é apenas a publicação no mural
-             'redirect_uri' => $this->urlApp
+            'scope' => $this->escopo_permissoes,
+            'redirect_uri' => $this->urlApp
 	));
     }//fim do redirecAssinarApp
     
@@ -96,7 +96,7 @@ class TonLibFB {
         $permissoes_dif = array_diff($scope, $permissoes_usuario);
         
         // Executa o if se houve diferença
-        if (!empty($permissoes_dif)) die('<script type="text/javascript"> top.location ="' . $this->getURLAssinarApp() . '" </script>');
+        if (!empty($permissoes_dif) && !isset($_REQUEST['usuario_externo'])) die('<script type="text/javascript"> top.location ="' . $this->getURLAssinarApp() . '" </script>');
         else return true;
     }
 
